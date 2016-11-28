@@ -1,7 +1,9 @@
 package com.example.cagri.votaapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +70,7 @@ public class ConfirmActivity extends AppCompatActivity implements Response.Liste
         }
     }
 
-    protected void vote(View view) {
+    public void vote(View view) {
         if (mayor == null || councilman == null) {
             Toast.makeText(this, "Para confirmar o voto, escolha um prefeito e um vereador.", Toast.LENGTH_LONG).show();
         } else {
@@ -96,6 +98,18 @@ public class ConfirmActivity extends AppCompatActivity implements Response.Liste
         }
     }
 
+    public void modifyMayor(View view) {
+        Intent it = new Intent(ConfirmActivity.this, CandidateListActivity.class);
+        it.putExtra("type", "prefeito");
+        startActivity(it);
+    }
+
+    public void modifyCouncilman(View view) {
+        Intent it = new Intent(ConfirmActivity.this, CandidateListActivity.class);
+        it.putExtra("type", "vereador");
+        startActivity(it);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -115,19 +129,20 @@ public class ConfirmActivity extends AppCompatActivity implements Response.Liste
             Integer code = ((JSONObject) response).getInt("code");
             String message = ((JSONObject) response).getString("message");
             if (code == 0) {
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Do something after 5s = 5000ms
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Parabéns.");
+                builder.setMessage("Seu voto foi registrado com sucesso.\nO aplicativo será fechado.");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra("EXIT", true);
                         startActivity(intent);
                     }
-                }, 3500);
+                });
+
+                builder.create().show();
 
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();

@@ -62,6 +62,16 @@
             android:layout_toRightOf="@+id/mayorPic"
             android:layout_toEndOf="@+id/mayorPic" />
 
+        <Button
+            android:text="Alterar Prefeito"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/button3"
+            android:layout_below="@+id/mayorParty"
+            android:layout_toRightOf="@+id/mayorPic"
+            android:layout_toEndOf="@+id/mayorPic"
+            android:onClick="modifyMayor" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -114,6 +124,16 @@
             android:layout_below="@+id/councilmanName"
             android:layout_toRightOf="@+id/councilmanPic"
             android:layout_toEndOf="@+id/councilmanPic" />
+
+        <Button
+            android:text="Alterar Vereador"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/button4"
+            android:layout_below="@+id/councilmanParty"
+            android:layout_toRightOf="@+id/councilmanPic"
+            android:layout_toEndOf="@+id/councilmanPic"
+            android:onClick="modifyCouncilman" />
 
     </RelativeLayout>
 
