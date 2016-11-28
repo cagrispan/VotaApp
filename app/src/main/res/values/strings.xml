@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VotaApp</string>
+    <string name="action_mayors">Votar Prefeito</string>
+    <string name="action_councilmen">Votar Vereador</string>
+    <string name="action_confirm">Confirmar Voto</string>
+    <string name="action_exit">Sair</string>
+</resources>
